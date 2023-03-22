@@ -1,42 +1,55 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    color: #515151;
+    background: linear-gradient(45deg,#185aad,#43c2a2);
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+section{
+    margin-top: 8%;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.location{
+    color: white;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.city{
+    margin: 0;
+    font-size: 2em;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.state{
+    margin-top: 0;
 }
-
-.card {
-  padding: 2em;
+.card{
+    width: 500px;
+    box-shadow: 0 10px 0 #515154;
 }
-
-.read-the-docs {
-  color: #888;
+.weather{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: whitesmoke;
+    background: orange;
+    height: 10vh;
+    padding: 20px 0;
+    border-top-left-radius: 10px ;
+    border-top-right-radius: 10px ;
+}
+.weather h1{
+    margin: 0;
+    font-size: 3em;
+}
+.info{
+    display: flex;
+    background: white;
+}
+.info *{
+    padding: 20px;
+    flex: 1;
+    border-right: 1px solid #e6e6e6;
 }

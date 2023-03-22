@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const city = 'Bangkok'
+  const apiKey = 'bf1c32d1c54cc98f8570aaa074a8d0b6'
+  const [location, setLocation] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+    fetch(url)
+      .then(res => res.json)
+      .then(data => {
+        setLocation(data)
+        setIsLoading(true)
+      })
+  }, [])
+
+  const convertTemp = (kelvin) => {
+    return (kelvin - 273).toFixed()
+  }
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    (isLoading && <div className='App'>
+      <section>
+        <div className='location'>
+          <h1 className='city'>{location.name}</h1>
+          <p className='state'>{location.sys.county}</p>
+        </div>
+        <div className='card'>
+          <div className='weather'>
+            <h1>{convertTemp(location.main.temp)}&deg;C</h1>
+            <small>max : {convertTemp(location.main.temp_max)}&deg;C, min : {convertTemp(location.main.temp_min)}&deg;C</small>
+          </div>
+          <div className='info'>
+            <div className='status'>{location.weather[0].main}</div>
+            <div className='humidity'>Moisture : {location.main.humidity}</div>
+            <div className='wind'>Wind speed : {location.wind.speed}</div>
+          </div>
+        </div>
+      </section>
+    </div>)
   )
 }
 
