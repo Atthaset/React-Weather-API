@@ -11,7 +11,7 @@ function App() {
   useEffect(() => {
     const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
     fetch(url)
-      .then(res => res.json)
+      .then(res => res.json())
       .then(data => {
         setLocation(data)
         setIsLoading(true)
@@ -23,21 +23,21 @@ function App() {
   }
 
   return (
-    (isLoading && <div className='App'>
+    (isLoading && <div className="App">
       <section>
-        <div className='location'>
-          <h1 className='city'>{location.name}</h1>
-          <p className='state'>{location.sys.county}</p>
+        <div className="location">
+          <h1 className="city">{location.name}</h1>
+          <p className="state">{location.sys.country}</p>
         </div>
-        <div className='card'>
-          <div className='weather'>
+        <div className="card">
+          <div className="weather">
             <h1>{convertTemp(location.main.temp)}&deg;C</h1>
-            <small>max : {convertTemp(location.main.temp_max)}&deg;C, min : {convertTemp(location.main.temp_min)}&deg;C</small>
+            <small>max : {convertTemp(location.main.temp_max)}&deg;C , min : {convertTemp(location.main.temp_min)}&deg;C</small>
           </div>
-          <div className='info'>
-            <div className='status'>{location.weather[0].main}</div>
-            <div className='humidity'>Moisture : {location.main.humidity}</div>
-            <div className='wind'>Wind speed : {location.wind.speed}</div>
+          <div className="info">
+            <div className="status">{location.weather[0].main}</div>
+            <div className="humidity">Humidity : {location.main.humidity}</div>
+            <div className="wind">Wind speed : {location.wind.speed}</div>
           </div>
         </div>
       </section>
